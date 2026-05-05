@@ -1,6 +1,6 @@
-# Mimir 🧠
-
 ![Mimir Logo](https://github.com/arkenstan/mimir/raw/main/public/assets/mimir_logo.png)
+
+# Mimir 🧠
 
 Mimir is an advanced, local-first brainstorming and thought-synthesis platform. Designed to act as a deeply integrated "second brain", Mimir allows you to capture ideas, link them together in a physics-based graph, and use local Large Language Models (LLMs) to synthesize complex branches of thought into cohesive narratives.
 
