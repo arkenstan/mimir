@@ -1,23 +1,27 @@
 <div class="right-sidebar-container">
   <div class="sidebar-tabs">
-    <button>
-      <span class="material-icons">close</span>
-    </button>
-    <button [class.active]="activeTab === 'Synthesis'" (click)="activeTab = 'Synthesis'">
+    @if (shortcutService.rightSidebarOpen()) {
+      <button class="close-btn" (click)="close()">
+        <span class="material-icons">close</span>
+      </button>
+    }
+    <button [class.active]="activeTab === 'Synthesis' && shortcutService.rightSidebarOpen()" (click)="toggleTab('Synthesis')">
       <span class="material-icons">auto_awesome</span>
-      Synthesis
+      <span>Synthesis</span>
     </button>
-    <button [class.active]="activeTab === 'Settings'" (click)="activeTab = 'Settings'">
+    <button [class.active]="activeTab === 'Settings' && shortcutService.rightSidebarOpen()" (click)="toggleTab('Settings')">
       <span class="material-icons">settings</span>
-      Settings
+      <span>Settings</span>
     </button>
   </div>
-  <div class="sidebar-content">
-    @if (activeTab === 'Synthesis') {
-      <mimir-synthesis-panel></mimir-synthesis-panel>
-    }
-    @if (activeTab === 'Settings') {
-      <mimir-settings-panel></mimir-settings-panel>
-    }
-  </div>
+  @if (shortcutService.rightSidebarOpen()) {
+    <div class="sidebar-content">
+      @if (activeTab === 'Synthesis') {
+        <mimir-synthesis-panel></mimir-synthesis-panel>
+      }
+      @if (activeTab === 'Settings') {
+        <mimir-settings-panel></mimir-settings-panel>
+      }
+    </div>
+  }
 </div>

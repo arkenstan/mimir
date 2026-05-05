@@ -30,9 +30,8 @@
   flex-shrink: 0;
 
   &.collapsed {
-    width: 0;
+    width: 72px; /* Match width of vertical tabs */
     overflow: hidden;
-    border-left: none;
   }
 }
 
