@@ -1,0 +1,41 @@
+<div class="sidebar-header">
+  <h2>Spaces</h2>
+  <button class="primary" (click)="onNewSession()" title="New Workspace">+</button>
+</div>
+
+<div class="session-list">
+  @for (session of sessionService.sessions(); track session.id) {
+    <div class="session-item" 
+         [class.active]="session.id === sessionService.activeSession()?.id"
+         (click)="sessionService.setActiveSession(session)">
+      
+      @if (editingSessionId !== session.id) {
+        <div class="session-content">
+          <div class="session-info">
+            <span class="session-name" (dblclick)="startEdit(session, $event)">{{ session.name }}</span>
+            <span class="session-date">{{ session.creationDate | date:'shortDate' }}</span>
+          </div>
+          <div class="session-actions">
+            <button class="icon-btn edit-btn" (click)="startEdit(session, $event)"><span class="material-icons">edit</span></button>
+            <button class="icon-btn delete-btn" (click)="deleteSession(session.id, $event)"><span class="material-icons">close</span></button>
+          </div>
+        </div>
+      }
+
+      @if (editingSessionId === session.id) {
+        <div class="session-edit" (click)="$event.stopPropagation()">
+          <input type="text" [(ngModel)]="editingName" (keydown.enter)="saveEdit(session, $event)" autofocus>
+          <button class="icon-btn save-btn" (click)="saveEdit(session, $event)"><span class="material-icons">check</span></button>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<div class="sidebar-footer">
+  <button (click)="onExport()">Export JSON</button>
+  <label class="import-btn">
+    Import JSON
+    <input type="file" accept=".json" (change)="onImport($event)" style="display: none;">
+  </label>
+</div>

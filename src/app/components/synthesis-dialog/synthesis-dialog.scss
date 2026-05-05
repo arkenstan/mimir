@@ -1,0 +1,20 @@
+.full-width {
+  width: 100%;
+  margin-top: 12px;
+}
+
+:host {
+  ::ng-deep .mat-mdc-dialog-container {
+    background-color: var(--panel-bg);
+    color: var(--text-color);
+  }
+  ::ng-deep .mat-mdc-dialog-title {
+    color: var(--text-color);
+  }
+  ::ng-deep .mat-mdc-dialog-content p {
+    color: var(--text-secondary);
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background-color: var(--bg-color) !important;
+  }
+}

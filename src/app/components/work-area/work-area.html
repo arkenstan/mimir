@@ -1,0 +1,64 @@
+@if (!sessionService.activeSession()) {
+  <div class="empty-state">
+    <span class="material-icons empty-icon">rocket_launch</span>
+    <h2>Select or Create a Session</h2>
+    <p>Start brainstorming by capturing your thoughts.</p>
+  </div>
+}
+
+@if (sessionService.activeSession()) {
+  <div class="work-area-container">
+    <div class="view-tabs">
+      @for (view of views; track view) {
+        <button
+          class="view-tab"
+          [class.active]="shortcutService.activeWorkAreaView() === view"
+          (click)="setView(view)"
+        >
+          @if (view === 'Tiling') {
+            <span class="material-icons">grid_view</span>
+          }
+          @if (view === 'Kanban') {
+            <span class="material-icons">view_column</span>
+          }
+          @if (view === 'Chain of Thoughts') {
+            <span class="material-icons">share</span>
+          }
+          {{ view }}
+        </button>
+      }
+    </div>
+
+    <div class="view-content">
+      @switch (shortcutService.activeWorkAreaView()) {
+        @case ('Tiling') {
+          <div class="tiling-view">
+            @if (sessionService.activeSession()?.ideas?.length === 0) {
+              <div class="empty-state">
+                <p>No ideas yet. Use the capture area below!</p>
+              </div>
+            }
+            @if (sessionService.activeSession()?.ideas?.length) {
+              <div class="ideas-grid">
+                @for (idea of sessionService.activeSession()?.ideas; track idea.id) {
+                  <mimir-idea-card [idea]="idea"></mimir-idea-card>
+                }
+              </div>
+            }
+          </div>
+        }
+        @case ('Kanban') {
+          <div class="kanban-view placeholder-view">
+            <span class="material-icons">construction</span>
+            <p>Kanban View (Coming Soon)</p>
+          </div>
+        }
+        @case ('Chain of Thoughts') {
+          <div class="graph-view">
+            <div #graphContainer class="d3-container"></div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+}

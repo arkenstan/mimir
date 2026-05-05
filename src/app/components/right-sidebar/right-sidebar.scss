@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  height: 100%;
+  background-color: var(--panel-bg);
+  overflow: hidden;
+}
+
+.right-sidebar-container {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+}
+
+.sidebar-tabs {
+  display: flex;
+  flex-flow: column nowrap;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--header-bg);
+
+  button {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-weight: bold;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    &.active {
+      color: var(--accent-color);
+      border-left-color: var(--accent-color);
+    }
+  }
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+}

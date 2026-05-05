@@ -1,0 +1,23 @@
+<div class="right-sidebar-container">
+  <div class="sidebar-tabs">
+    <button>
+      <span class="material-icons">close</span>
+    </button>
+    <button [class.active]="activeTab === 'Synthesis'" (click)="activeTab = 'Synthesis'">
+      <span class="material-icons">auto_awesome</span>
+      Synthesis
+    </button>
+    <button [class.active]="activeTab === 'Settings'" (click)="activeTab = 'Settings'">
+      <span class="material-icons">settings</span>
+      Settings
+    </button>
+  </div>
+  <div class="sidebar-content">
+    @if (activeTab === 'Synthesis') {
+      <mimir-synthesis-panel></mimir-synthesis-panel>
+    }
+    @if (activeTab === 'Settings') {
+      <mimir-settings-panel></mimir-settings-panel>
+    }
+  </div>
+</div>

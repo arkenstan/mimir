@@ -1,0 +1,197 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000;
+  
+  &.color-idea { background-color: var(--color-idea); }
+  &.color-claim { background-color: var(--color-claim); }
+  &.color-definition { background-color: var(--color-definition); }
+  &.color-reference { background-color: var(--color-reference); }
+  &.color-narrative { background-color: var(--color-narrative); }
+  &.color-note { background-color: var(--color-note); }
+  
+  .card-type-container {
+    position: relative;
+  }
+  
+  .card-type {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    user-select: none;
+    
+    .material-icons {
+      font-size: 14px;
+    }
+  }
+
+  .category-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    border-radius: 4px;
+    margin-top: 4px;
+    min-width: 120px;
+    overflow: hidden;
+    
+    .category-option {
+      padding: 6px 12px;
+      color: var(--text-color);
+      cursor: pointer;
+      font-weight: normal;
+      text-transform: none;
+      &:hover {
+        background-color: var(--bg-color);
+      }
+    }
+  }
+  
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #000;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover { opacity: 0.7; }
+    }
+  }
+}
+
+.raw-text {
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 16px 16px 0 16px;
+}
+
+.card-content {
+  padding: 12px 16px 16px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  .enriching-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    animation: pulse 1.5s infinite;
+    
+    .material-icons { font-size: 18px; }
+  }
+  
+  .enriched-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    
+    ::ng-deep {
+      h1, h2, h3, h4 { margin-top: 12px; margin-bottom: 8px; color: var(--text-color); }
+      p { margin-bottom: 8px; }
+      ul, ol { margin-left: 20px; margin-bottom: 8px; }
+      pre { background-color: #000; padding: 8px; border-radius: 4px; overflow-x: auto; margin-bottom: 8px; border: 1px solid var(--border-color); }
+      code { font-family: inherit; background-color: #000; padding: 2px 4px; border-radius: 2px; }
+    }
+  }
+}
+
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+  
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    
+    .tag {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-secondary);
+      
+      .remove-tag {
+        font-size: 12px;
+        cursor: pointer;
+        &:hover { color: #f44336; }
+      }
+    }
+    
+    .tag-input {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 0.75rem;
+      width: 60px;
+      padding: 2px;
+      
+      &:focus { outline: none; }
+      &::placeholder { color: var(--border-color); }
+    }
+  }
+  
+  .footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+    
+    .card-id {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    
+    .icon-btn {
+      background: none;
+      border: none;
+      padding: 2px;
+      color: var(--text-secondary);
+      
+      &:hover { color: var(--text-color); }
+      &.delete-btn:hover { color: #f44336; }
+      .material-icons { font-size: 16px; }
+    }
+  }
+}

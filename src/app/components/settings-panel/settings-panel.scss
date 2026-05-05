@@ -1,0 +1,10 @@
+.settings-container {
+  padding: 16px;
+  h3 { color: var(--accent-color); margin-bottom: 16px; margin-top: 0; }
+  .form-group {
+    margin-bottom: 16px;
+    label { display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.9rem; }
+    input { width: 100%; padding: 8px; background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 4px; }
+  }
+  button { width: 100%; }
+}

@@ -1,0 +1,44 @@
+<div class="panel-content">
+  <div class="synthesis-actions">
+    <button class="primary" (click)="onSynthesize()" [disabled]="isSynthesizing || !sessionService.activeSession()?.ideas?.length">
+      <span class="material-icons">auto_awesome</span>
+      Synthesize Now
+    </button>
+  </div>
+  
+  @if (isSynthesizing) {
+    <div class="synthesizing-state">
+      <div class="spinner"></div>
+      <p>Synthesizing insights...</p>
+    </div>
+  }
+
+  @if (sessionService.activeSession()?.synthesis && !isSynthesizing) {
+    <div class="synthesis-results" [class.added]="sessionService.activeSession()?.synthesis?.addedToWorkArea">
+      <div class="section">
+        <h3>Emerging Themes / Document</h3>
+        <div class="markdown-body" [innerHTML]="parsedSynthesisSummary"></div>
+        <button class="primary" style="margin-top: 12px;" (click)="addSynthesisToWorkArea()">Add to Work Area</button>
+      </div>
+
+      <div class="section">
+        <h3>Suggested Next Steps</h3>
+        <div class="suggestions-list">
+          @for (idea of sessionService.activeSession()?.synthesis?.suggestedNextIdeas; track idea) {
+            <div class="suggestion-item" (click)="useSuggested(idea)">
+              <span class="material-icons">add_circle_outline</span>
+              {{ idea }}
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (!sessionService.activeSession()?.synthesis && !isSynthesizing) {
+    <div class="empty-state">
+      <span class="material-icons">auto_awesome</span>
+      <p>Press Ctrl+S to synthesize your ideas</p>
+    </div>
+  }
+</div>

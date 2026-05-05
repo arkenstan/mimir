@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Synthesize Branch</h2>
+<mat-dialog-content>
+  <p>Please provide context for synthesizing this document.</p>
+  
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Document Title (Optional)</mat-label>
+    <input matInput [(ngModel)]="title" placeholder="e.g. Architecture Proposal">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Specific Instructions</mat-label>
+    <textarea matInput [(ngModel)]="instructions" placeholder="e.g. Make it formal and bulleted..." rows="4"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSynthesize()">Synthesize</button>
+</mat-dialog-actions>

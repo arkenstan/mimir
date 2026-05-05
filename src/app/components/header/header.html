@@ -1,0 +1,18 @@
+<div class="header-left">
+  <button class="menu-btn" aria-label="Menu" (click)="toggleSidebar()">
+    <span class="material-icons">menu</span>
+  </button>
+  <h1>Mimir</h1>
+  @if (sessionService.activeSession()) {
+    <div class="session-name">
+      {{ sessionService.activeSession()?.name }}
+    </div>
+  }
+</div>
+
+<div class="header-right">
+  <button (click)="themeService.toggleTheme()" class="theme-toggle">
+    {{ themeService.isDarkTheme() ? '☀️ Light' : '🌙 Dark' }}
+  </button>
+  <div class="time">{{ currentTime | date:'shortTime' }}</div>
+</div>

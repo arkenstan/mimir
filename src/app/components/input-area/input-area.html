@@ -1,0 +1,46 @@
+<div class="input-container">
+  <div class="input-wrapper">
+    @if (showMentions) {
+    <div class="mentions-dropdown">
+      @for (idea of mentionSuggestions; track idea.id) {
+      <div class="mention-item" (click)="selectMention(idea)">
+        <span class="mention-id">{{ '@' + (idea.id | slice:0:6) }}</span>
+        <span class="mention-text">{{ idea.rawText | slice:0:40 }}...</span>
+      </div>
+      }
+    </div>
+    }
+
+    @if (showTagMentions) {
+    <div class="mentions-dropdown">
+      @for (tag of tagMentionSuggestions; track tag) {
+      <div class="mention-item" (click)="selectTagMention(tag)">
+        <span class="mention-id">#{{ tag }}</span>
+      </div>
+      }
+    </div>
+    }
+    
+    <textarea 
+      #inputBox
+      [(ngModel)]="inputText" 
+      (input)="onInput($event)"
+      (keydown)="onKeyDown($event)"
+      placeholder="Capture something... (use #tag to categorize, @id for context)"
+      rows="1"
+    ></textarea>
+  </div>
+  
+  <div class="input-actions">
+    <button class="primary" (click)="onSubmit()" [disabled]="!inputText.trim()">Capture</button>
+  </div>
+</div>
+
+@if (selectedContextTags.size > 0) {
+<div class="context-tags">
+  <span class="context-label">Context:</span>
+  @for (tag of selectedContextTags; track tag) {
+    <span class="tag selected" (click)="toggleTagSelection(tag)">#{{ tag }}</span>
+  }
+</div>
+}

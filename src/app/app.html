@@ -1,0 +1,17 @@
+<div class="app-layout">
+  <mimir-sidebar class="left-sidebar" [class.collapsed]="!shortcutService.leftSidebarOpen()"></mimir-sidebar>
+  <div class="resize-handle left-handle" (mousedown)="startResizeLeft($event)"></div>
+  
+  <main class="main-content">
+    <mimir-header class="mimir-header"></mimir-header>
+    
+    <div class="mimir-content">
+      <mimir-work-area class="mimir-work-area"></mimir-work-area>
+    </div>
+
+    <mimir-input-area class="mimir-input-area"></mimir-input-area>
+  </main>
+
+  <div class="resize-handle right-handle" (mousedown)="startResizeRight($event)"></div>
+  <mimir-right-sidebar class="right-sidebar" [class.collapsed]="!shortcutService.rightSidebarOpen()"></mimir-right-sidebar>
+</div>

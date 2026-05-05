@@ -1,0 +1,58 @@
+<div class="card-header" [ngClass]="categoryColorClass">
+  <div class="card-type-container">
+    <div class="card-type" (click)="toggleCategoryMenu()" title="Click to change category">
+      <span class="material-icons">category</span>
+      {{ idea.category | uppercase }}
+    </div>
+    @if (isCategoryMenuOpen) {
+      <div class="category-menu">
+        @for (cat of categories; track cat) {
+          <div class="category-option" (click)="setCategory(cat)">
+            {{ cat }}
+          </div>
+        }
+      </div>
+    }
+  </div>
+  
+  <div class="card-actions">
+    <div class="card-time">{{ idea.timestamp | date:'shortTime' }}</div>
+    <button class="icon-btn" (click)="onToggleCollapse()">
+      <span class="material-icons">{{ idea.isCollapsed ? 'expand_more' : 'expand_less' }}</span>
+    </button>
+  </div>
+</div>
+
+<div class="raw-text">{{ idea.rawText }}</div>
+
+@if (!idea.isCollapsed) {
+<div class="card-content">
+  @if (idea.isEnriching) {
+    <div class="enriching-indicator">
+      <span class="material-icons">auto_awesome</span> Enriching...
+    </div>
+  }
+  
+  @if (idea.enrichedText) {
+    <div class="enriched-text markdown-body" [innerHTML]="parsedMarkdown">
+    </div>
+  }
+</div>
+}
+
+<div class="card-footer">
+  <div class="tags-container">
+    @for (tag of idea.tags; track tag) {
+      <span class="tag">
+        {{ tag }} <span class="material-icons remove-tag" (click)="removeTag(tag)">close</span>
+      </span>
+    }
+    <input type="text" class="tag-input" placeholder="+ tag" (keydown)="addTag($event)">
+  </div>
+  <div class="footer-actions">
+    <div class="card-id">#{{ idea.id.substring(0, 6) }}</div>
+    <button class="icon-btn delete-btn" (click)="onDelete()" title="Delete Idea">
+      <span class="material-icons">delete_outline</span>
+    </button>
+  </div>
+</div>
